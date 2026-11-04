@@ -77,6 +77,9 @@ def fold(binop, seq, default=no_default, map=map, chunksize=128, combine=None):
 
     results = list(results)  # TODO: Support complete laziness
 
+    if not results and default != no_default:
+        return default
+
     if len(results) == 1:    # Return completed result
         return results[0]
     else:                    # Recurse to reaggregate intermediate results
